@@ -9,7 +9,7 @@ namespace WindowsFormsApp1
     public partial class Form1 : Form
     {
         private Timer timer;
-        private int tiempoMuestreo = 90;
+        private int tiempoMuestreo = 100;
         private bool graficaPausada = false;
 
         public Form1()
@@ -56,10 +56,7 @@ namespace WindowsFormsApp1
             {
                 serialPort1.Close();
             }
-            catch
-            {
-
-            }
+            catch { }
         }
         private void ActualizarPuertosCOM()
         {
@@ -136,10 +133,10 @@ namespace WindowsFormsApp1
         {
             while (serialPort1.IsOpen && serialPort1.BytesToRead > 0)
             {
-                string serialData = serialPort1.ReadLine();
-                string[] datosSeparados = serialData.Split(',');
                 try
                 {
+                    string serialData = serialPort1.ReadLine();
+                    string[] datosSeparados = serialData.Split(',');
                     int.TryParse(datosSeparados[0], NumberStyles.Any, CultureInfo.InvariantCulture, out int num1);
                     int.TryParse(datosSeparados[1], NumberStyles.Any, CultureInfo.InvariantCulture, out int num2);
                     int.TryParse(datosSeparados[2], NumberStyles.Any, CultureInfo.InvariantCulture, out int num3);
